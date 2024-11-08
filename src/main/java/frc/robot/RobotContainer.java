@@ -22,7 +22,7 @@ public class RobotContainer {
   private final DriveSubsystem driveSubsystem;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
+  private final CommandXboxController driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -42,7 +42,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    driveSubsystem.setDefaultCommand(new RunCommand(null, null));
+    driveSubsystem.setDefaultCommand(new RunCommand(() -> {
+      driveSubsystem.setDrivePowers(driverController.getLeftTriggerAxis(), driverController.getRightTriggerAxis());
+    }));
   }
 
   /**
