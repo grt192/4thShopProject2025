@@ -43,8 +43,9 @@ public class RobotContainer {
    */
   private void configureBindings() {
     driveSubsystem.setDefaultCommand(new RunCommand(() -> {
-      driveSubsystem.setDrivePowers(driverController.getLeftTriggerAxis(), driverController.getRightTriggerAxis());
-    }));
+      driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
+    }, driveSubsystem));
+
   }
 
   /**
