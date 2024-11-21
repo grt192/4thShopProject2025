@@ -32,11 +32,10 @@ public class RobotContainer {
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
       
 
-  private final CommandXboxController intakeController =
+  private final CommandXboxController mechController =
       new CommandXboxController(1);
 
-  private final Trigger leftBumper = intakeController.leftBumper();
-  private final Trigger rightBumper = intakeController.rightBumper();
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -60,8 +59,8 @@ public class RobotContainer {
       driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
     }, driveSubsystem));
 
-    leftBumper.whileTrue(new InstantCommand( () -> intakeSubsystem.SetIntakeSpeed(0.5)));
-    rightBumper.whileTrue(new InstantCommand( () -> intakeSubsystem.SetIntakeSpeed(-0.5)));
+    intakeSubsystem.SetIntakeSpeed(mechController.getLeftY());
+  
 
 
 
