@@ -30,10 +30,6 @@ public class ElevatorSubsystem extends SubsystemBase{
         elevatorpid.setI(0);
         elevatorpid.setD(0);
 
-        encoder.setPosition(0);
-        encoder.setPositionConversionFactor(0);
-        encoder.setVelocityConversionFactor(0);
-
 
         rightelevator.follow(leftelevator);
     }
