@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -25,6 +26,7 @@ public class RobotContainer {
   private double upPosition;
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem;
+  private final ElevatorSubsystem elevatorSubsystem;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController driverController =
@@ -36,6 +38,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     driveSubsystem = new DriveSubsystem();
+    elevatorSubsystem = new ElevatorSubsystem();
     
     // Configure the trigger bindings
     configureBindings();
@@ -55,13 +58,14 @@ public class RobotContainer {
       driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
     }, driveSubsystem));
 
-  //  rightBumper.onTrue(
-   //   new ConditionalCommand(
-
-
-
-  //    )
-  //  )
+    rightBumper.onTrue( 
+      new ConditionalCommand( 
+        new InstantCommand(()-> elevatorSubsystem.setElevatorState(upPosition)), 
+        new InstantCommand(()-> elevatorSubsystem.setElevatorState(0)),
+        ()->elevatorSubsystem.atFloor()
+        )
+      );
+    
 
     
   }
