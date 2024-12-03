@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.OperatorConstants;
 
 public class IntakeSubsystem extends SubsystemBase{
     
@@ -16,8 +17,8 @@ public class IntakeSubsystem extends SubsystemBase{
 
 
     public IntakeSubsystem() {
-        intakeMotor = new CANSparkMax(0, MotorType.kBrushless);
-        dustpanMotor = new WPI_TalonSRX(0);
+        intakeMotor = new CANSparkMax(OperatorConstants.intakeMotor, MotorType.kBrushless);
+        dustpanMotor = new WPI_TalonSRX(OperatorConstants.dustpanMotor);
         
     }
 

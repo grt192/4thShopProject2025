@@ -33,7 +33,7 @@ public class RobotContainer {
       
 
   private final CommandXboxController mechController =
-      new CommandXboxController(1);
+      new CommandXboxController(OperatorConstants.kDriverMechPort);
 
   
 
@@ -59,7 +59,9 @@ public class RobotContainer {
       driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
     }, driveSubsystem));
 
-    intakeSubsystem.SetIntakeSpeed(mechController.getLeftY());
+    intakeSubsystem.setDefaultCommand(new InstantCommand(()-> {
+      intakeSubsystem.SetIntakeSpeed(mechController.getLeftY());
+    }));
   
 
 
