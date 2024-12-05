@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.OperatorConstants;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase;
@@ -20,15 +22,15 @@ public class ElevatorSubsystem extends SubsystemBase{
 
 
     public ElevatorSubsystem (){
-        leftelevator = new CANSparkMax (2, MotorType.kBrushless);
-        rightelevator = new CANSparkMax(3, MotorType.kBrushless);
+        leftelevator = new CANSparkMax (OperatorConstants.leftelevator, MotorType.kBrushless);
+        rightelevator = new CANSparkMax(OperatorConstants.rightelevator, MotorType.kBrushless);
         elevatorpid = leftelevator.getPIDController();
-        limitSwitch = new DigitalInput (0);
+        limitSwitch = new DigitalInput (OperatorConstants.limitSwitch);
         encoder = leftelevator.getEncoder();
 
-        elevatorpid.setP(0);
-        elevatorpid.setI(0);
-        elevatorpid.setD(0);
+        elevatorpid.setP(OperatorConstants.elevatorP);
+        elevatorpid.setI(OperatorConstants.elevatorI);
+        elevatorpid.setD(OperatorConstants.elevatorD);
 
 
         rightelevator.follow(leftelevator);
@@ -46,5 +48,16 @@ public class ElevatorSubsystem extends SubsystemBase{
 
     public double position(){
         return encoder.getPosition();
+    }
+
+    public void resetEncoder(){
+        encoder.setPosition(0);
+    }
+
+    @Override
+    public void periodic() {
+        if (atFloor()){
+            resetEncoder();
+        }
     }
 }
