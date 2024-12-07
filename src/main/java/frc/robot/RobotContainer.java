@@ -60,8 +60,8 @@ public class RobotContainer {
     }, driveSubsystem));
 
     intakeSubsystem.setDefaultCommand(new InstantCommand(()-> {
-      intakeSubsystem.SetIntakeSpeed(mechController.getLeftY());
-    }));
+      intakeSubsystem.SetIntakeSpeed(mechController.getLeftTriggerAxis()-mechController.getRightTriggerAxis());
+    }, intakeSubsystem));
   
 
 
