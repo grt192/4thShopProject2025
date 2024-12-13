@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ElevatorSubsystem extends SubsystemBase{
     private CANSparkMax leftelevator;
-    private CANSparkMax rightelevator;
     private SparkPIDController elevatorpid;
     private DigitalInput limitSwitch;
     private RelativeEncoder encoder;
@@ -22,8 +21,7 @@ public class ElevatorSubsystem extends SubsystemBase{
 
 
     public ElevatorSubsystem (){
-        leftelevator = new CANSparkMax (OperatorConstants.leftelevator, MotorType.kBrushless);
-        rightelevator = new CANSparkMax(OperatorConstants.rightelevator, MotorType.kBrushless);
+        leftelevator = new CANSparkMax (OperatorConstants.leftelevator, MotorType.kBrushless);       
         elevatorpid = leftelevator.getPIDController();
         limitSwitch = new DigitalInput (OperatorConstants.limitSwitch);
         encoder = leftelevator.getEncoder();
@@ -31,9 +29,6 @@ public class ElevatorSubsystem extends SubsystemBase{
         elevatorpid.setP(OperatorConstants.elevatorP);
         elevatorpid.setI(OperatorConstants.elevatorI);
         elevatorpid.setD(OperatorConstants.elevatorD);
-
-
-        rightelevator.follow(leftelevator);
     }
 
     public void setElevatorState(double state){
