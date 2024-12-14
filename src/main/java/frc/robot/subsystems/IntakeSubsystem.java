@@ -10,14 +10,13 @@ import frc.robot.Constants.OperatorConstants;
 
 public class IntakeSubsystem extends SubsystemBase{
     
-    private final CANSparkMax intakeMotor;
+    // private final CANSparkMax intakeMotor;
     private final WPI_TalonSRX dustpanMotor; 
     private double speed;
 
 
 
     public IntakeSubsystem() {
-        intakeMotor = new CANSparkMax(OperatorConstants.intakeMotor, MotorType.kBrushless);
         dustpanMotor = new WPI_TalonSRX(OperatorConstants.dustpanMotor);
         
     }
@@ -28,7 +27,6 @@ public class IntakeSubsystem extends SubsystemBase{
     
     @Override
     public void periodic() {
-       intakeMotor.set(speed);
        dustpanMotor.set(speed);
     }
     

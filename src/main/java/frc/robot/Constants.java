@@ -22,8 +22,7 @@ public final class Constants {
     public static final int rightFrontMotor = 2;
     public static final int rightBackMotor = 3;
 
-    public static final int intakeMotor = 4;
-    public static final int dustpanMotor = 5;
+    public static final int dustpanMotor = 4;
 
   }
 }
