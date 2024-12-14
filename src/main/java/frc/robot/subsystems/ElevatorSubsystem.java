@@ -10,6 +10,8 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkPIDController;
+
+import edu.wpi.first.math.proto.System;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ElevatorSubsystem extends SubsystemBase{
@@ -25,6 +27,7 @@ public class ElevatorSubsystem extends SubsystemBase{
         elevatorpid = leftelevator.getPIDController();
         limitSwitch = new DigitalInput (OperatorConstants.limitSwitch);
         encoder = leftelevator.getEncoder();
+        encoder.setPosition(0);
 
         elevatorpid.setP(OperatorConstants.elevatorP);
         elevatorpid.setI(OperatorConstants.elevatorI);
@@ -47,6 +50,10 @@ public class ElevatorSubsystem extends SubsystemBase{
 
     public void resetEncoder(){
         encoder.setPosition(0);
+    }
+
+    public void setPower(double speed) {
+        leftelevator.set(speed);
     }
 
     @Override

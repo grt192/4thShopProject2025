@@ -54,9 +54,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    driveSubsystem.setDefaultCommand(new RunCommand(() -> {
-      driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
-    }, driveSubsystem));
+    // driveSubsystem.setDefaultCommand(new RunCommand(() -> {
+    //   driveSubsystem.setDrivePowers(driverController.getLeftY(), driverController.getRightY());
+    // }, driveSubsystem));
 
     rightBumper.onTrue( 
       new ConditionalCommand( 
@@ -65,6 +65,10 @@ public class RobotContainer {
         ()->elevatorSubsystem.atFloor()
         )
       );
+
+    elevatorSubsystem.setDefaultCommand(new InstantCommand( () -> {
+      elevatorSubsystem.setPower(mechController.getLeftTriggerAxis()-mechController.getRightTriggerAxis());
+    }));
     
 
     
