@@ -13,6 +13,7 @@ import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.OperatorConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -21,10 +22,10 @@ public class DriveSubsystem extends SubsystemBase {
   private double leftPower, rightPower;
 
   public DriveSubsystem() {
-    leftFrontMotor = new WPI_TalonSRX(0);
-    leftBackMotor = new WPI_TalonSRX(1);
-    rightFrontMotor = new WPI_TalonSRX(2);
-    rightBackMotor = new WPI_TalonSRX(3);
+    leftFrontMotor = new WPI_TalonSRX(OperatorConstants.leftFrontMotor);
+    leftBackMotor = new WPI_TalonSRX(OperatorConstants.rightBackMotor);
+    rightFrontMotor = new WPI_TalonSRX(OperatorConstants.rightFrontMotor);
+    rightBackMotor = new WPI_TalonSRX(OperatorConstants.rightBackMotor);
 
     leftPower = 0;
     rightPower = 0;
